@@ -94,7 +94,7 @@ Brain-Computer-Interface/
 │── requirements.txt
 │
 │── notebooks/
-│   └── BCI_Motor_Imagery_Experiment.ipynb   # Full Colab experiment
+│   └── BCIipynb.ipynb   # Full Colab experiment
 │
 │── src/
 │   ├── models.py      # Model definition (extracted from notebook)

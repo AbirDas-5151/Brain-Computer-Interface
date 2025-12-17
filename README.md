@@ -7,154 +7,166 @@
 
 ## Overview
 
-This repository contains research code for **Motor Imagery (MI) classification in Brain–Computer Interfaces (BCI)** using modern deep learning approaches. The project focuses on robust feature learning from EEG signals and improving classification performance across subjects.
+This repository contains the **exact experimental implementation** used for **Motor Imagery (MI) classification in Brain–Computer Interface (BCI) systems**. All experiments were conducted in **Google Colab**, and the full experimental notebook is provided for transparency and reproducibility.
 
-**Key goals**:
-
-* Reliable MI classification from multi-channel EEG
-* Subject-independent / cross-subject generalization
-* Reproducible experiments with clean training pipelines
+The work focuses on learning discriminative representations from multi-channel EEG signals for reliable motor imagery classification using deep learning.
 
 ---
 
-## Highlights
+## What This Repository Represents
 
-* End-to-end EEG preprocessing → model training → evaluation
-* Support for classical ML baselines and deep learning models
-* Modular design for experimenting with architectures
-* Clear evaluation using accuracy, confusion matrices, and learning curves
+* ✅ A **real research experiment**, not a demo
+* ✅ End‑to‑end EEG pipeline: preprocessing → training → evaluation
+* ✅ Results generated directly from the provided notebook
+* ❌ Not a real‑time BCI system
+
+---
+
+## Experimental Setup
+
+### Platform
+
+* Google Colab (GPU runtime)
+
+### Task
+
+* Motor Imagery EEG classification
+
+### Input
+
+* Multi‑channel EEG signals segmented into trials/epochs
+
+### Output
+
+* Discrete motor imagery class predictions
 
 ---
 
 ## Dataset
 
-Supported datasets (or planned support):
+The experiment uses a **public Motor Imagery EEG dataset** commonly employed in BCI research.
 
-* BCI Competition IV (2a / 2b)
-* PhysioNet MI EEG Dataset
+⚠️ **Dataset files are not included** due to licensing restrictions.
 
-> ⚠️ Datasets are **not included** due to license restrictions. Scripts assume raw EEG files placed in `data/raw/`.
+Expected directory (if re-running locally):
+
+```
+data/
+└── raw/   # EEG recordings
+```
 
 ---
 
-## Methodology
+## Methodology (As Implemented)
 
-1. **Signal Preprocessing**
+### 1. EEG Preprocessing
 
-   * Band-pass filtering
-   * Artifact handling
-   * Epoch extraction
+* Signal loading
+* Channel selection
+* Epoch extraction
+* Normalization / scaling
 
-2. **Feature Learning**
+### 2. Model Architecture
 
-   * Time-domain and frequency-domain representations
-   * CNN-based spatial–temporal feature extraction
+* Deep learning–based classifier implemented in PyTorch
+* Learns spatial–temporal features directly from EEG signals
 
-3. **Classification**
+### 3. Training
 
-   * Deep neural networks (CNN-based)
-   * Optional classical baselines (SVM, LDA)
+* Supervised learning
+* Cross‑entropy loss
+* Batch‑based optimization
+
+### 4. Evaluation
+
+* Classification accuracy
+* Confusion matrix visualization
 
 ---
 
 ## Repository Structure
 
+This structure mirrors how the experiment was actually conducted.
+
 ```
 Brain-Computer-Interface/
 │── README.md
 │── requirements.txt
-│── data/
-│   ├── raw/          # Original EEG files (not included)
-│   ├── processed/    # Preprocessed EEG epochs
-│
-│── src/
-│   ├── preprocessing.py
-│   ├── dataset.py
-│   ├── models.py
-│   ├── train.py
-│   ├── evaluate.py
-│   └── utils.py
 │
 │── notebooks/
-│   ├── exploratory_analysis.ipynb
-│   └── training_demo.ipynb
+│   └── BCI_Motor_Imagery_Experiment.ipynb   # Full Colab experiment
+│
+│── src/
+│   ├── models.py      # Model definition (extracted from notebook)
+│   ├── train.py       # Training & evaluation logic
+│   └── utils.py       # Helper functions
 │
 │── results/
 │   ├── confusion_matrix.png
-│   ├── training_curves.png
-│
-│── experiments/
-│   └── config.yaml
+│   └── training_curve.png
 ```
 
 ---
 
-## Installation
+## Running the Experiment
+
+### Option 1 — Recommended (Colab)
+
+Open the notebook in Google Colab:
+
+```
+notebooks/BCI_Motor_Imagery_Experiment.ipynb
+```
+
+Run cells sequentially.
+
+### Option 2 — Local (Optional)
 
 ```bash
-git clone https://github.com/AbirDas-5151/Brain-Computer-Interface.git
-cd Brain-Computer-Interface
 pip install -r requirements.txt
-```
-
----
-
-## Usage
-
-### Preprocessing
-
-```bash
-python src/preprocessing.py --input data/raw --output data/processed
-```
-
-### Training
-
-```bash
-python src/train.py --config experiments/config.yaml
-```
-
-### Evaluation
-
-```bash
-python src/evaluate.py --checkpoint checkpoints/model.pth
+python src/train.py
 ```
 
 ---
 
 ## Results
 
-| Model  | Accuracy | Notes                    |
-| ------ | -------- | ------------------------ |
-| CNN-MI | XX%      | Cross-subject evaluation |
+Representative results from the experiment:
 
-> Replace `XX%` with your best verified result.
+* Motor imagery classification accuracy (see notebook)
+* Confusion matrix visualization
+
+All reported results are **generated directly from the provided notebook**.
 
 ---
 
 ## Research Context
 
-This repository supports ongoing and published research in **EEG-based Motor Imagery analysis** and explainable AI for neural signals.
+This repository supports academic work in:
 
-If you use this code in academic work, please cite appropriately.
+* Brain–Computer Interfaces (BCI)
+* EEG signal analysis
+* Motor Imagery classification
+
+The code is shared to ensure **reproducibility and transparency** of the experiment.
 
 ---
 
-## Future Work
+## Limitations
 
-* Transformer-based EEG encoders
-* Self-supervised pretraining for EEG
-* Explainability (Grad-CAM for EEG)
-* Real-time inference pipeline
+* Offline analysis only
+* Dataset‑specific evaluation
+* No real‑time inference pipeline
 
 ---
 
 ## Author
 
 **Abir Das**
-AI Researcher | Computer Vision & Biomedical AI
+AI Researcher | Biomedical Signal Processing & Deep Learning
 
 ---
 
 ## License
 
-This project is licensed under the MIT License.
+MIT License
